@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useProducts } from '@/hooks/useProducts' // Ajusta la ruta según donde tengas el hook
+import { useProducts } from '@/hooks/useProducts'
 import { Product } from '@/lib/api'
 
 
