@@ -19,7 +19,7 @@ export default function SidebarHeader({
           {/* <Dumbbell className="w-4 h-4 text-white" /> */}
           <img src='/images/mob-mendoza.png' className="bg-white"/>
         </div>
-        {isSidebarOpen && <span className="font-bold text-lg text-gray-900">{nombreNegocio}</span>}
+        {isSidebarOpen && <span className="font-bolds text-lg text-gray-900">{nombreNegocio}</span>}
       </button>
     </div>
   )

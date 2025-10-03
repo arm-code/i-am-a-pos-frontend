@@ -23,13 +23,13 @@ export async function middleware(req: NextRequest) {
   const { data: { session } } = await supabase.auth.getSession()
   const url = req.nextUrl.clone()
 
-  if (!session && url.pathname.startsWith("/inicio")) {
+  if (!session && url.pathname.startsWith("/dashboard")) {
     url.pathname = "/auth/login"
     return NextResponse.redirect(url)
   }
 
   if (session && url.pathname.startsWith("/auth/login")) {
-    url.pathname = "/inicio"
+    url.pathname = "/dashboard"
     return NextResponse.redirect(url)
   }
 
@@ -37,5 +37,8 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/inicio/:path*", "/productos/:path*", "/usuarios-sistema/:path*", "/auth/:path*"],
+  matcher: [
+    "/dashboard/:path*", 
+    "/auth/:path*"
+  ],
 }
