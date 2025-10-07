@@ -57,29 +57,33 @@ export default function SidebarLayout({ currentView, onViewChange, children }: S
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
       <aside
-        className={`transition-all duration-300 bg-white border-r border-gray-300 shadow-sm
-          ${isSidebarOpen ? "w-64" : "w-16"}
-        `}
-      >
-        <SidebarHeader
-          nombreNegocio={nombre_negocio}
-          isSidebarOpen={isSidebarOpen}
-          toggleSidebar={toggleSidebar}
-        />
+  className={`flex flex-col justify-between transition-all duration-300 bg-white border-r border-gray-300 shadow-sm
+    ${isSidebarOpen ? "w-64" : "w-16"}
+  `}
+>
+  <div>
+    <SidebarHeader
+      nombreNegocio={nombre_negocio}
+      isSidebarOpen={isSidebarOpen}
+      toggleSidebar={toggleSidebar}
+    />
 
-        <SidebarNav
-          items={menuItems}
-          currentView={currentView}
-          onViewChange={onViewChange}
-          isSidebarOpen={isSidebarOpen}
-        />
+    <SidebarNav
+      items={menuItems}
+      currentView={currentView}
+      onViewChange={onViewChange}
+      isSidebarOpen={isSidebarOpen}
+    />
+  </div>
 
-        <SidebarFooter
-          isSidebarOpen={isSidebarOpen}
-          session={session}
-          onLogout={handleLogout}
-        />
-      </aside>
+  {/* Footer al fondo */}
+  <SidebarFooter
+    isSidebarOpen={isSidebarOpen}
+    session={session}
+    onLogout={handleLogout}
+  />
+</aside>
+
 
       {/* Content area */}
       <div className="flex-1 flex flex-col">

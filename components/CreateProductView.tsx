@@ -1,154 +1,291 @@
 'use client'
 
-import { useState } from 'react'
+import { useApi } from '@/hooks/useApi'
+import { useEffect, useState } from 'react'
 
 interface CreateProductViewProps {
   onSuccess: () => void
 }
 
-export default function CreateProductView({ onSuccess }: CreateProductViewProps) {
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    price: '',
-    category: '',
-    stock: ''
-  })
-  const [loading, setLoading] = useState(false)
+interface Categoria {
+  id: number
+  nombre: string
+}
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+interface TipoProducto {
+  id: number
+  nombre: string
+}
+
+export default function CreateProductView({ onSuccess }: CreateProductViewProps) {
+  const { loading, request, error } = useApi()
+
+  const [formData, setFormData] = useState({
+    codigoBarras: '',
+    sku: '',
+    nombre: '',
+    descripcion: '',
+    precioCompra: '',
+    precioVenta: '',
+    precioRentaDiario: '0',
+    stock: '0',
+    stockMinimo: '0',
+    categoriaId: '',
+    tipoProductoId: '',
+    activo: true
+  })
+
+  const [categorias, setCategorias] = useState<Categoria[]>([])
+  const [tiposProducto, setTiposProducto] = useState<TipoProducto[]>([])
+
+  // 🚀 Cargar categorías y tipos desde la API
+  useEffect(() => {
+    const fetchData = async () => {
+      const [catRes, tiposRes] = await Promise.all([
+        request('/categorias'),
+        request('/tipos-producto')
+      ])
+
+      if (catRes?.data) setCategorias(catRes.data)
+      if (tiposRes?.data) setTiposProducto(tiposRes.data)
+    }
+
+    fetchData()
+  }, [request])
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]:
+        type === 'number'
+          ? value === ''
+            ? ''
+            : Number(value)
+          : type === 'checkbox'
+          ? (e.target as HTMLInputElement).checked
+          : value
     })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setLoading(true)
 
-    try {
-      // Aquí harías la llamada a tu API
-      console.log('Datos a enviar:', formData)
-      
-      // Simular llamada API
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // Resetear form
-      setFormData({
-        name: '',
-        description: '',
-        price: '',
-        category: '',
-        stock: ''
-      })
-      
-      alert('Producto creado exitosamente')
+    const payload = {
+      codigoBarras: formData.codigoBarras || undefined,
+      sku: formData.sku || undefined,
+      nombre: formData.nombre,
+      descripcion: formData.descripcion || undefined,
+      precioCompra: Number(formData.precioCompra),
+      precioVenta: Number(formData.precioVenta),
+      precioRentaDiario: Number(formData.precioRentaDiario) || 0,
+      stock: Number(formData.stock) || 0,
+      stockMinimo: Number(formData.stockMinimo) || 0,
+      categoriaId: formData.categoriaId ? Number(formData.categoriaId) : undefined,
+      tipoProductoId: Number(formData.tipoProductoId),
+      activo: formData.activo
+    }
+
+    const res = await request('/productos', {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    })
+
+    if (res?.data) {
+      alert('✅ Producto creado correctamente')
       onSuccess()
-    } catch (error) {
-      console.error('Error:', error)
-      alert('Error al crear el producto')
-    } finally {
-      setLoading(false)
+    } else {
+      alert('❌ Error al crear el producto')
+      console.error(error)
     }
   }
 
   return (
     <div className="max-w-2xl">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Nuevo Producto</h2>
-      
+
       <form onSubmit={handleSubmit} className="card space-y-6">
+        {/* Código de barras y SKU */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Código de barras</label>
+            <input
+              type="text"
+              name="codigoBarras"
+              value={formData.codigoBarras}
+              onChange={handleInputChange}
+              maxLength={50}
+              className="input-field"
+              placeholder="7501001234567"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">SKU</label>
+            <input
+              type="text"
+              name="sku"
+              value={formData.sku}
+              onChange={handleInputChange}
+              maxLength={50}
+              className="input-field"
+              placeholder="PROT-001"
+            />
+          </div>
+        </div>
+
+        {/* Nombre y descripción */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-            Nombre del producto *
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Nombre *</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            name="nombre"
+            value={formData.nombre}
             onChange={handleInputChange}
             required
+            minLength={2}
+            maxLength={200}
             className="input-field"
-            placeholder="Ingresa el nombre del producto"
+            placeholder="Proteína Whey 2lb"
           />
         </div>
 
         <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-            Descripción
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
           <textarea
-            id="description"
-            name="description"
-            value={formData.description}
+            name="descripcion"
+            value={formData.descripcion}
             onChange={handleInputChange}
             rows={3}
             className="input-field resize-none"
-            placeholder="Descripción opcional del producto"
+            placeholder="Descripción del producto"
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Precios */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
-              Precio *
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Precio compra *</label>
             <input
               type="number"
-              id="price"
-              name="price"
-              value={formData.price}
+              name="precioCompra"
+              value={formData.precioCompra}
               onChange={handleInputChange}
               required
-              step="0.01"
               min="0"
+              step="0.01"
               className="input-field"
-              placeholder="0.00"
             />
           </div>
-
           <div>
-            <label htmlFor="stock" className="block text-sm font-medium text-gray-700 mb-2">
-              Stock inicial *
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Precio venta *</label>
             <input
               type="number"
-              id="stock"
+              name="precioVenta"
+              value={formData.precioVenta}
+              onChange={handleInputChange}
+              required
+              min="0"
+              step="0.01"
+              className="input-field"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Renta diaria</label>
+            <input
+              type="number"
+              name="precioRentaDiario"
+              value={formData.precioRentaDiario}
+              onChange={handleInputChange}
+              min="0"
+              step="0.01"
+              className="input-field"
+            />
+          </div>
+        </div>
+
+        {/* Stock */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Stock</label>
+            <input
+              type="number"
               name="stock"
               value={formData.stock}
               onChange={handleInputChange}
-              required
               min="0"
               className="input-field"
-              placeholder="0"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Stock mínimo</label>
+            <input
+              type="number"
+              name="stockMinimo"
+              value={formData.stockMinimo}
+              onChange={handleInputChange}
+              min="0"
+              className="input-field"
             />
           </div>
         </div>
 
-        <div>
-          <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
-            Categoría *
-          </label>
-          <select
-            id="category"
-            name="category"
-            value={formData.category}
-            onChange={handleInputChange}
-            required
-            className="input-field"
-          >
-            <option value="">Selecciona una categoría</option>
-            <option value="categoria-a">Categoría A</option>
-            <option value="categoria-b">Categoría B</option>
-            <option value="categoria-c">Categoría C</option>
-          </select>
+        {/* Categoría y tipo */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Categoría</label>
+            <select
+              name="categoriaId"
+              value={formData.categoriaId}
+              onChange={handleInputChange}
+              className="input-field"
+            >
+              <option value="">Selecciona una categoría</option>
+              {categorias.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.nombre}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Tipo de producto *</label>
+            <select
+              name="tipoProductoId"
+              value={formData.tipoProductoId}
+              onChange={handleInputChange}
+              required
+              className="input-field"
+            >
+              <option value="">Selecciona un tipo</option>
+              {tiposProducto.map((tipo) => (
+                <option key={tipo.id} value={tipo.id}>
+                  {tipo.nombre}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
+        {/* Activo */}
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            name="activo"
+            checked={formData.activo}
+            onChange={handleInputChange}
+            className="mr-2"
+          />
+          <label className="text-sm text-gray-700">Producto activo</label>
+        </div>
+
+        {/* Botones */}
         <div className="flex justify-end space-x-4">
           <button
             type="button"
-            onClick={() => onSuccess()}
+            onClick={onSuccess}
             className="btn-secondary"
             disabled={loading}
           >
@@ -159,7 +296,7 @@ export default function CreateProductView({ onSuccess }: CreateProductViewProps)
             className="btn-primary"
             disabled={loading}
           >
-            {loading ? 'Creando...' : 'Crear Producto'}
+            {loading ? 'Guardando...' : 'Guardar producto'}
           </button>
         </div>
       </form>

@@ -9,22 +9,26 @@ export function useApi<T = any>() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const request = useCallback(async (
-    endpoint: string,
-    options: RequestInit = {}
-  ): Promise<ApiResponse<T>> => {
-    setLoading(true);
-    setError(null);
+  const request = useCallback(
+    async (
+      endpoint: string,
+      options: RequestInit & { json?: any } = {} // 👈 agregado
+    ): Promise<ApiResponse<T>> => {
+      setLoading(true);
+      setError(null);
 
-    const response = await apiClient<T>(endpoint, options);
+      // Si pasas la propiedad json, la convierte automáticamente
+      const { json, ...rest } = options;
+      const body = json ? JSON.stringify(json) : options.body;
 
-    if (response.error) {
-      setError(response.error);
-    }
+      const response = await apiClient<T>(endpoint, { ...rest, body });
 
-    setLoading(false);
-    return response;
-  }, []);
+      if (response.error) setError(response.error);
+      setLoading(false);
+      return response;
+    },
+    []
+  );
 
   return { request, loading, error };
 }
