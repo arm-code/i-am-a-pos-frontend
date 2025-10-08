@@ -56,7 +56,7 @@ export default function SidebarLayout({
     { id: 'products', label: 'Productos', icon: '📦' },
     { id: 'create-product', label: 'Nuevo Producto', icon: '➕' },
     { id: 'categories', label: 'Categorías', icon: '🏷️' },
-    { id: 'global-settings', label: 'Settings', icon: '🎛️' },
+    { id: 'global-settings', label: 'Configuración', icon: '🎛️' },
   ];
 
   return (

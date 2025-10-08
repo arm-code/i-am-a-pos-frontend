@@ -15,7 +15,7 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
     if (pathname.includes('categories')) setCurrentView('categories')
     else if (pathname.includes('products')) setCurrentView('products')
     else if (pathname.includes('create-product')) setCurrentView('create-product')
-    else if (pathname.includes('settings')) setCurrentView('global-settings')
+    else if (pathname.includes('settings')) setCurrentView('configuracion')
     else setCurrentView('principal')
   }, [pathname])
 
@@ -27,7 +27,7 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
         products: '/productos',
         categories: '/categorias',
         'create-product': '/crear-producto',
-        'global-settings': '/settings',
+        'global-settings': '/configuracion',
       }
       router.push(paths[view] || '/')
     }}>

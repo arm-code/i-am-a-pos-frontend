@@ -2,7 +2,7 @@ import React from 'react'
 
 const ConfiguracionPage = () => {
   return (
-    <div>pageLogin</div>
+    <div>configuracion page</div>
   )
 }
 

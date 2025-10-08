@@ -1,4 +1,5 @@
-import { View } from "@/app/page";
+import { View } from "@/types/View.types";
+
 
 export default function SidebarNav({
   items,
