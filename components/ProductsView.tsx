@@ -1,37 +1,39 @@
 'use client'
 
-import { useState } from 'react'
-import { useProducts } from '@/hooks/useProducts'
-import { Product } from '@/lib/api'
+import { useApi } from '@/hooks/useApi'
+import { Product } from '@/types/products.types';
+import { useEffect, useState } from 'react'
+
 
 
 export default function ProductsView() {
-  const {
-    products,
-    loading,
-    error,
-    fetchProducts,
-    deleteProduct
-  } = useProducts()
-  
-  const [searchTerm, setSearchTerm] = useState('')
+
+  const { error, loading, request } = useApi();  
+  const [ products, setProducts ] = useState<Product[]>([])
+  const [searchTerm, setSearchTerm] = useState('')  
+
+  const fetchProducts = async () => {
+    const res = await request('/productos')
+    console.log(res.data)
+    if(res.data){
+      setProducts(res.data.products);      
+    }    
+  }  
+
+   useEffect(() => {
+    fetchProducts()    
+  }, [])
+
 
   // Función para manejar la eliminación de productos
   const handleDeleteProduct = async (id: number, nombre: string) => {
-    if (confirm(`¿Estás seguro de que quieres eliminar "${nombre}"?`)) {
-      const result = await deleteProduct(id)
-      if (result.success) {
-        alert('Producto eliminado correctamente')
-      } else {
-        alert(`Error al eliminar: ${result.error}`)
-      }
-    }
+    
   }
-
+  
   const handleEditProduct = async (id: number, productData: Partial<Product>) => {
     
   }
-
+  
   // Mostrar error si existe
   if (error) {
     return (
@@ -40,24 +42,27 @@ export default function ProductsView() {
         <button 
           onClick={fetchProducts}
           className="ml-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
+          >
           Reintentar
         </button>
       </div>
     )
   }
-
+  
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="text-lg text-gray-600">Cargando productos...</div>
       </div>
     )
-  }
+  } 
+  
 
   const filteredProducts = products.filter(product =>
     product.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   )
+
+
 
   return (
     <div>
