@@ -12,10 +12,10 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
 
   useEffect(() => {
     // sincróniza currentView según la ruta actual
-    if (pathname.includes('categories')) setCurrentView('categories')
-    else if (pathname.includes('products')) setCurrentView('products')
-    else if (pathname.includes('create-product')) setCurrentView('create-product')
-    else if (pathname.includes('settings')) setCurrentView('configuracion')
+    if (pathname.includes('categorias')) setCurrentView('categorias')
+    else if (pathname.includes('productos')) setCurrentView('productos')
+    else if (pathname.includes('crear-producto')) setCurrentView('crear-producto')
+    else if (pathname.includes('configuracion')) setCurrentView('configuracion')
     else setCurrentView('principal')
   }, [pathname])
 
@@ -23,11 +23,11 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
     <SidebarLayout currentView={currentView} onViewChange={(view) => {
       // navegación real en lugar de useState
       const paths: Record<string, string> = {
-        principal: '/',
-        products: '/productos',
-        categories: '/categorias',
-        'create-product': '/crear-producto',
-        'global-settings': '/configuracion',
+        'principal': '/',
+        'productos': '/productos',
+        'categorias': '/categorias',
+        'crear-producto': '/crear-producto',
+        'configuracion': '/configuracion',
       }
       router.push(paths[view] || '/')
     }}>

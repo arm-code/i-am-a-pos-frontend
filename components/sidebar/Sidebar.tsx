@@ -53,17 +53,20 @@ export default function SidebarLayout({
 
   const menuItems: { id: View; label: string; icon: string }[] = [
     { id: 'principal', label: 'Principal', icon: '🏠' },
-    { id: 'products', label: 'Productos', icon: '📦' },
-    { id: 'create-product', label: 'Nuevo Producto', icon: '➕' },
-    { id: 'categories', label: 'Categorías', icon: '🏷️' },
-    { id: 'global-settings', label: 'Configuración', icon: '🎛️' },
+    { id: 'productos', label: 'Productos', icon: '📦' },
+    { id: 'crear-producto', label: 'Nuevo Producto', icon: '➕' },
+    { id: 'categorias', label: 'Categorías', icon: '🏷️' },
+    { id: 'configuracion', label: 'Configuración', icon: '🎛️' },
   ];
 
   return (
-    <div className='flex min-h-screen bg-gray-50' style={{
-    // ← Define el ancho del sidebar para el header
-    ['--sidebar-width' as any]: isSidebarOpen ? '16rem' : '4rem'
-  }}>
+    <div
+      className='flex min-h-screen bg-gray-50'
+      style={{
+        // ← Define el ancho del sidebar para el header
+        ['--sidebar-width' as any]: isSidebarOpen ? '16rem' : '4rem',
+      }}
+    >
       {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 flex flex-col h-screen transition-all duration-300 bg-white border-r border-gray-300 shadow-sm
