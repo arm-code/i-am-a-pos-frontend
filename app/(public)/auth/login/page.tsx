@@ -18,7 +18,7 @@ export default function LoginPage() {
       await loginUser(formData.get("email") as string, formData.get("password") as string)
       setMessage("Se ha iniciado sesión correctamente")
       setLoading(false)
-      router.push("/dashboard")
+      router.push("/")
     } catch (err: any) {
       setMessage("Error: " + err.message)
     }
