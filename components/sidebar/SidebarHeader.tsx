@@ -10,7 +10,7 @@ export default function SidebarHeader({
   toggleSidebar: () => void
 }) {
   return (
-    <div className="flex items-center p-4 border-b border-gray-200">
+    <div className="flex items-center p-2 h-15 border-b border-gray-200">
       <button
         onClick={toggleSidebar}
         className="flex items-center gap-3 p-1 hover:bg-gray-100 rounded-lg transition-colors w-full"

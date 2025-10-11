@@ -1,8 +1,11 @@
 import React from 'react'
+import HeaderSettings from './components/HeaderSettings.component'
 
 const ConfiguracionPage = () => {
   return (
-    <div>configuracion page</div>
+    <div>
+      <HeaderSettings/>
+    </div>
   )
 }
 
