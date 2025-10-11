@@ -1,8 +1,11 @@
+import ProductsView from '@/components/ProductsView'
 import React from 'react'
 
 const ProductosPage = () => {
   return (
-    <div>productos page</div>
+    <div>
+      <ProductsView/>
+    </div>
   )
 }
 
