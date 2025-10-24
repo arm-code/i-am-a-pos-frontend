@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend punto de venta 
+---
 
-## Getting Started
+### Pasos a seguir para poder ejecutar el proyecto
+- Clonar el proyecto desde el repositorio de github.
+- Ejecutar `pnpm install`.
+- Crear un archivo en la raiz del proyecto `.env.local` basandote de `.env.template`.
+- Colocar las credenciales de acceso solicitadas dentro del archivo.
+- Ejecutar en local con `pnpm run dev`.
+---
 
-First, run the development server:
+### Gestión de las ramas de git
+- Hay dos ramas principales `dev` y `main`.
+- Para trabajar en nuevos features hay que crear una  nueva rama basada en `dev`.
+- Se recomienda la siguiente nomeclatura para los nombres de las ramas `[nombre-feature]-[fecha]-[Iniciales-Usuario]`. Ej. `login-251024-ARM`.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Mandar cambios a las ramas principales.
+- Hay que desarrollar el `feature` en la rama creada basada en `dev`.
+- Una vez corroborado que funcione correctamente, hacer `pull request` a la rama `dev`. Resolver conflictos si es necesario.
+- Pedir autorización para hacer `merge`.
+- Verificar que los cambios funcionen correctamente en `dev`, y despues hacer `pull request` a `main`, para proceder con el `merge`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Pasos para agregar componentes de `shadcn` 
+- Asegurate de tener instalada la libreria `pnpm dlx shadcn@latest init`
+- Para agregar un componente `pnpm dlx shadcn@latest add [nombre-del-cpmponente]`
+- Puedes consultar los diferentes componentes en `https://ui.shadcn.com/docs/components`
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
