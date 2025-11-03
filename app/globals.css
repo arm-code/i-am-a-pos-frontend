@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 @plugin "tailwindcss-animate";
 @import "tw-animate-css";
 
@@ -171,6 +170,15 @@
   --sidebar-border: oklch(0.922 0 0);
 
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+body {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Opcional: si quieres aplicar mono en elementos específicos */
+code, pre {
+  font-family: var(--font-geist-mono), monospace;
 }
 
 .dark {
