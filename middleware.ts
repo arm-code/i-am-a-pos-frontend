@@ -38,7 +38,7 @@ export async function middleware(req: NextRequest) {
   );
 
   if (!session && isPrivate) {
-    url.pathname = '/auth/login';
+    url.pathname = '/about-us';
     return NextResponse.redirect(url);
   }
 
