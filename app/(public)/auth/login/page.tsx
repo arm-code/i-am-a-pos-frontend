@@ -21,6 +21,8 @@ export default function LoginPage() {
       router.push("/")
     } catch (err: any) {
       setMessage("Error: " + err.message)
+    }finally{
+      setLoading(false)
     }
   }
 
