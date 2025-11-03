@@ -6,10 +6,10 @@ import React from 'react'
 
 const items = [
   { title: 'Inicio', route: '/about-us' },
-  { title: 'Productos y servicios', route: '/products' },
+  { title: 'Productos y servicios', route: '/products-services' },
   { title: 'Equipo de trabajo', route: '/about-owners' },
   { title: 'Administración', route: '/auth/login' },
-  { title: 'Desarrollador', route: '/auth/login' },
+  { title: 'Desarrollador', route: '/about-me' },
 ]
 
 const Navbar = () => {
