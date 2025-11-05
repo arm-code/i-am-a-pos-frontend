@@ -21,29 +21,26 @@ export default function SidebarNav({
             <li key={item.id}>
               <button
                 onClick={() => onViewChange(item.id)}
-                className={`w-full flex items-center hover:cursor-pointer px-4 py-3 rounded-lg text-left transition-all duration-200
+                className={`w-full flex items-center transition-all duration-200 rounded-lg group
                   ${
                     isActive
-                      ? isSidebarOpen
-                        ? 'bg-violet-100 text-violet-700 border-r-2 border-violet-700 shadow-inner'
-                        : 'bg-violet-100 text-violet-700 border-none shadow-none justify-center'
-                      : 'text-gray-700 hover:bg-gray-100 justify-center'
+                      ? 'bg-violet-100 text-violet-700 shadow-sm border border-violet-200'
+                      : 'text-violet-600 hover:bg-violet-50 hover:text-violet-700'
                   }
-                  ${isSidebarOpen ? 'justify-start space-x-3' : 'justify-center'}
+                  ${isSidebarOpen ? 'px-4 py-3 justify-start space-x-3' : 'p-3 justify-center'}
                 `}
+                title={!isSidebarOpen ? item.label : undefined} // Tooltip cuando está colapsado
               >
-                {/* Icono */}
-                <span
-                  className={`text-lg transition-transform ${
-                    isActive ? 'scale-110' : 'group-hover:scale-105'
-                  }`}
-                >
+                <span className={`transition-transform ${
+                  isActive ? 'scale-110' : 'group-hover:scale-105'
+                }`}>
                   {item.icon}
                 </span>
 
-                {/* Etiqueta visible solo si el sidebar está abierto */}
                 {isSidebarOpen && (
-                  <span className="font-medium ml-3 truncate">{item.label}</span>
+                  <span className="font-medium text-sm transition-all duration-200">
+                    {item.label}
+                  </span>
                 )}
               </button>
             </li>
