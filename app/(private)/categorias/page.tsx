@@ -1,8 +1,9 @@
+import { UnderConstruction } from '@/components/underConstruction/UnderConstruction.component'
 import React from 'react'
 
 const CategoriasPage = () => {
   return (
-    <div>CategoriasPage</div>
+    <UnderConstruction/>
   )
 }
 

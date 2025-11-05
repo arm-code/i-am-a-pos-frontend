@@ -3,7 +3,7 @@
 import { useApi } from '@/hooks/useApi'
 import { Product } from '@/types/products.types';
 import { useEffect, useState } from 'react'
-import { Loader, PageLoader } from './Loader.component';
+import { Loader } from './Loader.component';
 
 
 
@@ -67,14 +67,14 @@ export default function ProductsView() {
   return (
     <div className=''>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Productos</h2>
+        <h2 className="text-2xl font-bold text-violet-900">Productos disponibles</h2>
         <div className="flex space-x-4">
           <input
             type="text"
             placeholder="Buscar productos..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-violet-300 rounded px-3 py-2 w-64 focus:outline-none focus:ring-2 focus:ring-violet-500"
           />
         </div>
       </div>
@@ -82,10 +82,10 @@ export default function ProductsView() {
       {filteredProducts.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-4xl mb-4">📦</div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <h3 className="text-lg font-medium text-violet-900 mb-2">
             {searchTerm ? 'No se encontraron productos' : 'No hay productos'}
           </h3>
-          <p className="text-gray-600">
+          <p className="text-violet-600">
             {searchTerm ? 'Intenta con otro término de búsqueda' : 'Comienza agregando tu primer producto'}
           </p>
         </div>
@@ -94,7 +94,7 @@ export default function ProductsView() {
           {filteredProducts.map((product) => (
             <div key={product.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
               <div className="flex justify-between items-start mb-3">
-                <h3 className="font-semibold text-lg text-gray-900">{product.nombre}</h3>
+                <h3 className="font-semibold text-lg text-violet-900">{product.nombre}</h3>
                 <span className={`px-2 py-1 text-xs rounded-full ${
                   product.stock > 0 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                 }`}>
@@ -109,7 +109,7 @@ export default function ProductsView() {
                   ${parseFloat(product.precioVenta).toFixed(2)}
                 </span>
                 <div className="flex space-x-2">
-                  <button className="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm hover:bg-gray-300">
+                  <button className="px-3 py-1 bg-violet-200 text-violet-700 rounded text-sm hover:bg-violet-300">
                     Editar
                   </button>
                   <button 
