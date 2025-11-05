@@ -9,6 +9,7 @@ import SidebarFooter from './SidebarFooter';
 import Topbar from './Topbar';
 import { supabaseBrowser } from '@/lib/supabase/supabaseBrowser';
 import { View } from '@/types/View.types';
+import { Home, Package, PackagePlus, Settings, Tags } from 'lucide-react';
 
 interface SidebarProps {
   currentView: View;
@@ -51,12 +52,28 @@ export default function SidebarLayout({
     router.push('/auth/login');
   };
 
-  const menuItems: { id: View; label: string; icon: string }[] = [
-    { id: 'principal', label: 'Principal', icon: '🏠' },
-    { id: 'productos', label: 'Productos', icon: '📦' },
-    { id: 'crear-producto', label: 'Nuevo Producto', icon: '➕' },
-    { id: 'categorias', label: 'Categorías', icon: '🏷️' },
-    { id: 'configuracion', label: 'Configuración', icon: '🎛️' },
+  const menuItems: { id: View; label: string; icon: React.ReactNode }[] = [
+    { id: 'principal', label: 'Principal', icon: <Home className='w-5 h-5' /> },
+    {
+      id: 'productos',
+      label: 'Productos',
+      icon: <Package className='w-5 h-5' />,
+    },
+    {
+      id: 'crear-producto',
+      label: 'Nuevo Producto',
+      icon: <PackagePlus className='w-5 h-5' />,
+    },
+    {
+      id: 'categorias',
+      label: 'Categorías',
+      icon: <Tags className='w-5 h-5' />,
+    },
+    {
+      id: 'configuracion',
+      label: 'Configuración',
+      icon: <Settings className='w-5 h-5' />,
+    },
   ];
 
   return (

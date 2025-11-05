@@ -6,7 +6,7 @@ export default function SidebarNav({
   onViewChange,
   isSidebarOpen,
 }: {
-  items: { id: View; label: string; icon: string }[];
+  items: { id: View; label: string; icon: React.ReactNode }[];
   currentView: View;
   onViewChange: (view: View) => void;
   isSidebarOpen: boolean;
@@ -25,8 +25,8 @@ export default function SidebarNav({
                   ${
                     isActive
                       ? isSidebarOpen
-                        ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-700 shadow-inner'
-                        : 'bg-blue-100 text-blue-700 border-none shadow-none justify-center'
+                        ? 'bg-violet-100 text-violet-700 border-r-2 border-violet-700 shadow-inner'
+                        : 'bg-violet-100 text-violet-700 border-none shadow-none justify-center'
                       : 'text-gray-700 hover:bg-gray-100 justify-center'
                   }
                   ${isSidebarOpen ? 'justify-start space-x-3' : 'justify-center'}
