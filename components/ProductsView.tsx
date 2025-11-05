@@ -3,6 +3,8 @@
 import { useApi } from '@/hooks/useApi'
 import { Product } from '@/types/products.types';
 import { useEffect, useState } from 'react'
+import { Loader, PageLoader } from './Loader.component';
+
 
 
 
@@ -51,9 +53,7 @@ export default function ProductsView() {
   
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-lg text-gray-600">Cargando productos...</div>
-      </div>
+      <Loader size='lg' text='Obteniendo productos...'/>      
     )
   } 
   
@@ -65,7 +65,7 @@ export default function ProductsView() {
 
 
   return (
-    <div>
+    <div className=''>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-900">Productos</h2>
         <div className="flex space-x-4">

@@ -61,7 +61,7 @@ export default function SidebarLayout({
 
   return (
     <div
-      className='flex min-h-screen bg-gray-50'
+      className='flex bg-violet-50'
       style={{
         // ← Define el ancho del sidebar para el header
         ['--sidebar-width' as any]: isSidebarOpen ? '16rem' : '4rem',
@@ -69,7 +69,7 @@ export default function SidebarLayout({
     >
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 flex flex-col h-screen transition-all duration-300 bg-white border-r border-gray-300 shadow-sm
+        className={`fixed top-0 left-0 flex flex-col h-screen transition-all duration-300 bg-white border-r border-violet-300 shadow-sm
     ${isSidebarOpen ? 'w-64' : 'w-16'}
   `}
       >
@@ -99,7 +99,7 @@ export default function SidebarLayout({
       </aside>
 
       <div
-        className={`flex min-h-screen bg-gray-50 transition-all duration-300 ${
+        className={`flex min-h-screen w-full justify-center bg-gray-50 transition-all duration-300 ${
           isSidebarOpen ? 'pl-64' : 'pl-16'
         }`}
       >
