@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 interface NotFoundProps {
   title?: string
   message?: string
@@ -20,19 +22,23 @@ export const NotFound = ({
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           {showBackButton && (
-            <button 
-              onClick={() => window.history.back()}
-              className="px-6 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors"
+            <Link 
+              href="#" // Link vacío para mantener consistencia
+              onClick={(e) => {
+                e.preventDefault()
+                window.history.back()
+              }}
+              className="px-6 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors text-center"
             >
               Volver atrás
-            </button>
+            </Link>
           )}
-          <button 
-            onClick={() => window.location.href = '/'}
-            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          <Link 
+            href="/"
+            className="px-6 py-2 bg-violet-600 text-white rounded hover:bg-violet-700 transition-colors text-center"
           >
             Ir al inicio
-          </button>
+          </Link>
         </div>
       </div>
     </div>
