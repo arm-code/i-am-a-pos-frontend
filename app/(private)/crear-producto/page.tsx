@@ -3,7 +3,7 @@
 import { useApi } from '@/hooks/useApi';
 import { useState } from 'react';
 import { Package, ArrowLeft, Save } from 'lucide-react';
-import { Loader } from '@/components/Loader.component';
+import { Loader } from '@/components/Loaders/Loader.component';
 import { useToast } from '@/hooks/useToast';
 
 interface CreateProductForm {

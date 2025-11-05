@@ -1,6 +1,6 @@
 'use client'
 
-import { Loader } from '@/components/Loader.component';
+import { Loader } from '@/components/Loaders/Loader.component';
 import { useApi } from '@/hooks/useApi'
 import { Product } from '@/types/products.types';
 import { useEffect, useState } from 'react'
