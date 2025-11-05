@@ -21,6 +21,8 @@ export default function LoginPage() {
       router.push("/")
     } catch (err: any) {
       setMessage("Error: " + err.message)
+    }finally{
+      setLoading(false)
     }
   }
 
@@ -30,7 +32,7 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-xl p-6 w-full max-w-sm space-y-4 border border-gray-200"
       >
-        <h1 className="text-2xl font-semibold text-gray-800 text-center">Iniciar sesión</h1>
+        <h1 className="text-1xl font-semibold text-gray-800 text-center">Ingresa tus credenciales de acceso</h1>
 
         <input
           type="email"
@@ -52,7 +54,7 @@ export default function LoginPage() {
           disabled={loading}
           className="w-full bg-violet-600 text-white py-2 rounded-lg hover:bg-violet-700 transition-colors cursor-pointer disabled:opacity-50"
         >
-          {loading ? "Cargando..." : "Iniciar sesión"}
+          {loading ? "Cargando..." : "Ingresar"}
         </button>
 
         <p className="text-center text-sm text-gray-600">{message}</p>
