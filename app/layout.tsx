@@ -4,7 +4,7 @@ import './globals.css';
 import { ToastContainer } from 'react-toastify';
 
 export const metadata = {
-  title: 'mobiliario mendoza',
+  title: 'Mobiliario Mendoza',
   description: 'Sistema de punto de venta',
 };
 

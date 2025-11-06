@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 const items = [
   { title: 'Inicio', route: '/about-us' },
@@ -14,28 +15,65 @@ const items = [
 
 const Navbar = () => {
   const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+
+  const isActive = (route: string) => pathname === route
 
   return (
-    <nav className='flex gap-6 items-center'>
-      {items.map((item) => {
-        const isActive = pathname === item.route
-        return (
+    <>
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex items-center gap-4 lg:gap-6">
+        {items.map((item) => (
           <Link 
             href={item.route} 
             className={`
-              text-sm font-medium transition-all duration-200
-              ${isActive 
-                ? 'text-gray-900 border-b-2 border-gray-900 pb-1' 
-                : 'text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-300 pb-1'
+              text-sm font-medium transition-all duration-200 px-3 py-2 rounded-lg
+              ${isActive(item.route) 
+                ? 'text-violet-700 bg-violet-100 font-semibold' 
+                : 'text-violet-600 hover:text-violet-700 hover:bg-violet-50'
               }
             `} 
             key={item.title}
           >
             {item.title}
           </Link>
-        )
-      })}
-    </nav>
+        ))}
+      </nav>
+
+      {/* Mobile Navigation */}
+      <div className="md:hidden">
+        <button
+          onClick={toggleMenu}
+          className="p-2 text-violet-600 hover:bg-violet-50 rounded-lg transition-colors"
+        >
+          {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="absolute top-16 right-4 bg-white border border-violet-200 rounded-xl shadow-lg py-2 min-w-48 z-50">
+            {items.map((item) => (
+              <Link 
+                href={item.route} 
+                onClick={toggleMenu}
+                className={`
+                  block px-4 py-3 text-sm font-medium transition-colors
+                  ${isActive(item.route) 
+                    ? 'text-violet-700 bg-violet-50' 
+                    : 'text-violet-600 hover:bg-violet-50'
+                  }
+                `} 
+                key={item.title}
+              >
+                {item.title}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   )
 }
 
