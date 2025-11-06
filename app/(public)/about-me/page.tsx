@@ -17,12 +17,10 @@ const AboutMePage = () => {
               <div className='absolute inset-0 rounded-full bg-gradient-to-r from-violet-400 via-purple-500 to-violet-400 animate-aura scale-110 opacity-30 blur-md'></div>
 
               <div className='relative w-32 h-32 sm:w-40 sm:h-40'>
-                <Image
-                  src={profilePhoto}
-                  alt='Foto de perfil de Alexis Romero Mendoza'
-                  fill
-                  className='rounded-full object-cover shadow-xl relative z-10'
-                  priority
+                <img
+                  src='/profiles/square-alro.jpg'
+                  alt='Foto de perfil de Alexis Romero Mendoza'                  
+                  className='rounded-full object-cover shadow-xl relative z-10'                  
                 />
               </div>
             </div>
