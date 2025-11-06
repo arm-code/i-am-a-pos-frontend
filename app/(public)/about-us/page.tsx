@@ -1,10 +1,9 @@
 'use client';
 
-import Image from 'next/image';
+
 import Link from 'next/link';
 import Script from 'next/script';
 import React from 'react';
-import logoFactory from '@/public/images/mob-mendoza.png'
 import { Phone, Mail, MapPin, Clock, Shield, Users, Truck, CheckCircle } from 'lucide-react';
 
 const factoryName = 'Mobiliario Mendoza';
@@ -54,12 +53,10 @@ const AboutUsPage = () => {
         <div className="  p-8 text-center">
           <div className="flex justify-center mb-6">
             <div className="relative w-24 h-24 sm:w-28 sm:h-28">
-              <Image
-                src={logoFactory}
-                alt="Logotipo de Mobiliario Mendoza"
-                fill
-                className="object-contain"
-                priority
+              <img
+                src='/images/mob-mendoza.png'
+                alt="Logotipo de Mobiliario Mendoza"                
+                className="object-contain"                
               />
             </div>
           </div>
