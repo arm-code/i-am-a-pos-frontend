@@ -8,7 +8,7 @@ import SidebarFooter from './SidebarFooter';
 import Topbar from './Topbar';
 import { supabaseBrowser } from '@/lib/supabase/supabaseBrowser';
 import { View } from '@/types/View.types';
-import { Home, Package, PackagePlus, Settings, Tags, Menu, X } from 'lucide-react';
+import { Home, Package, PackagePlus, Settings, Tags, Menu, X, Boxes } from 'lucide-react';
 
 interface SidebarProps {
   currentView: View;
@@ -80,6 +80,11 @@ export default function SidebarLayout({
       id: 'categorias',
       label: 'Categorías',
       icon: <Tags className='w-5 h-5' />,
+    },
+    {
+      id: 'tipos-productos',
+      label: 'Tipos de productos',
+      icon: <Boxes className='w-5 h-5' />,
     },
     {
       id: 'configuracion',
