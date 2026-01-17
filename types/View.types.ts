@@ -1,1 +1,1 @@
-export type View = 'productos' | 'categorias' | 'crear-producto' | 'configuracion' | 'principal' | 'tipos-productos'
+export type View = 'productos' | 'categorias' | 'crear-producto' | 'configuracion' | 'principal' | 'tipos-productos' | 'tools'
