@@ -14,7 +14,7 @@ export default function ToolsPage() {
       </p>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="hover:shadow-md transition-shadow">
+        <Card className="hover:shadow-md transition-shadow border-violet-100">
           <CardHeader className="flex flex-row items-center space-y-0 pb-2">
             <CardTitle className="text-sm text-violet-900 font-medium">Nota de Venta</CardTitle>
             <FileText className="h-4 w-4 text-violet-600 ml-auto" />
@@ -30,6 +30,24 @@ export default function ToolsPage() {
             </Link>
           </CardContent>
         </Card>
+
+        <Card className="hover:shadow-md transition-shadow border-violet-100">
+          <CardHeader className="flex flex-row items-center space-y-0 pb-2">
+            <CardTitle className="text-sm text-violet-900 font-medium">Historial de Notas</CardTitle>
+            <FileText className="h-4 w-4 text-violet-600 ml-auto" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-violet-600 mb-4">
+              Consulta y gestiona las notas de venta generadas.
+            </p>
+            <Link href="/tools/notas-venta">
+              <Button variant="outline" className="w-full border-violet-200 text-violet-700 hover:bg-violet-50">
+                Ver Historial
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
       </div>
     </div>
   );
