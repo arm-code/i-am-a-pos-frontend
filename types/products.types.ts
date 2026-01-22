@@ -10,7 +10,7 @@ export interface Product {
     stock:             number;
     stockMinimo:       number;
     categoria:         Categoria;
-    tipoProducto:      TipoProducto;
+    tipoProducto:      ProductTypes;
     activo:            boolean;
     createdAt:         Date;
     updatedAt:         Date;
@@ -26,7 +26,7 @@ export interface Categoria {
     updatedAt:   Date;
 }
 
-export interface TipoProducto {
+export interface ProductTypes {
     id:            number;
     nombre:        string;
     descripcion:   string;

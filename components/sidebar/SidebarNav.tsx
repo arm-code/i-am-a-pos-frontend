@@ -21,7 +21,7 @@ export default function SidebarNav({
             <li key={item.id}>
               <button
                 onClick={() => onViewChange(item.id)}
-                className={`w-full flex items-center transition-all duration-200 rounded-lg group
+                className={`w-full cursor-pointer flex items-center transition-all duration-200 rounded-lg group
                   ${
                     isActive
                       ? 'bg-violet-100 text-violet-700 shadow-sm border border-violet-200'
