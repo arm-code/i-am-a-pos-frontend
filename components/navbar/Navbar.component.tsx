@@ -9,6 +9,7 @@ const items = [
   { title: 'Inicio', route: '/about-us' },
   { title: 'Productos y servicios', route: '/products-services' },
   { title: 'Equipo de trabajo', route: '/about-owners' },
+  { title: 'Datos bancarios', route: '/payment-info' },
   { title: 'Administración', route: '/auth/login' },
   // { title: 'Desarrollador', route: '/about-me' },
 ]
