@@ -6,9 +6,9 @@ import ProductCarousel from '@/components/products/ProductCarousel';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const BUSINESS_NAME = 'Eventos Mendoza';
-const PHONE_DISPLAY = '656 130 4629';
-const PHONE_RAW = '+526561304629';
-const WHATS_NUMBER = '526561304629';
+const PHONE_DISPLAY = '656 603 1549';
+const PHONE_RAW = '+526566031549';
+const WHATS_NUMBER = '526566031549';
 const ADDRESS = 'Ciudad Juárez, Chihuahua';
 const EMAIL = 'contacto@eventosmendoza.mx';
 const BASE_URL = 'https://eventos-mendoza.arm-solutions.com.mx';
