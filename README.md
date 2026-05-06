@@ -1,4 +1,4 @@
-# Frontend punto de venta 
+# Eventos Mendoza App
 ---
 
 ### Pasos a seguir para poder ejecutar el proyecto
