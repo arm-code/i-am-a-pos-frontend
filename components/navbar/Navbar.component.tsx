@@ -6,12 +6,12 @@ import React, { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
 const items = [
-  { title: 'Inicio', route: '/about-us' },
+  { title: 'Inicio', route: '/' },
   { title: 'Productos y servicios', route: '/products-services' },
   { title: 'Equipo de trabajo', route: '/about-owners' },
   { title: 'Datos bancarios', route: '/payment-info' },
   { title: 'Administración', route: '/auth/login' },
-  // { title: 'Desarrollador', route: '/about-me' },
+  { title: 'Desarrollador', route: '/about-me' },
 ]
 
 const Navbar = () => {
@@ -27,15 +27,15 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-4 lg:gap-6">
         {items.map((item) => (
-          <Link 
-            href={item.route} 
+          <Link
+            href={item.route}
             className={`
               text-sm font-medium transition-all duration-200 px-3 py-2 rounded-lg
-              ${isActive(item.route) 
-                ? 'text-violet-700 bg-violet-100 font-semibold' 
+              ${isActive(item.route)
+                ? 'text-violet-700 bg-violet-100 font-semibold'
                 : 'text-violet-600 hover:text-violet-700 hover:bg-violet-50'
               }
-            `} 
+            `}
             key={item.title}
           >
             {item.title}
@@ -56,16 +56,16 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="absolute top-16 right-4 bg-white border border-violet-200 rounded-xl shadow-lg py-2 min-w-48 z-50">
             {items.map((item) => (
-              <Link 
-                href={item.route} 
+              <Link
+                href={item.route}
                 onClick={toggleMenu}
                 className={`
                   block px-4 py-3 text-sm font-medium transition-colors
-                  ${isActive(item.route) 
-                    ? 'text-violet-700 bg-violet-50' 
+                  ${isActive(item.route)
+                    ? 'text-violet-700 bg-violet-50'
                     : 'text-violet-600 hover:bg-violet-50'
                   }
-                `} 
+                `}
                 key={item.title}
               >
                 {item.title}

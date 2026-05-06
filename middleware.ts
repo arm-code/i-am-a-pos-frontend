@@ -25,12 +25,16 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getSession();
   const url = req.nextUrl.clone();
 
+  // Rutas privadas del admin (requieren sesión)
   const privateRoutes = [
-    '/',
-    '/configuracion',
     '/dashboard',
+    '/configuracion',
     '/productos',
     '/usuarios',
+    '/categorias',
+    '/crear-producto',
+    '/tipos-productos',
+    '/tools',
   ];
 
   const isPrivate = privateRoutes.some(
@@ -38,12 +42,12 @@ export async function middleware(req: NextRequest) {
   );
 
   if (!session && isPrivate) {
-    url.pathname = '/about-us';
+    url.pathname = '/auth/login';
     return NextResponse.redirect(url);
   }
 
   if (session && url.pathname.startsWith('/auth')) {
-    url.pathname = '/';
+    url.pathname = '/dashboard';
     return NextResponse.redirect(url);
   }
 
@@ -52,12 +56,14 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    '/',
+    '/dashboard/:path*',
     '/productos/:path*',
     '/categorias/:path*',
     '/crear-producto/:path*',
+    '/tipos-productos/:path*',
     '/configuracion/:path*',
+    '/tools/:path*',
+    '/usuarios/:path*',
     '/auth/:path*',
-    '/login',
   ],
 };
