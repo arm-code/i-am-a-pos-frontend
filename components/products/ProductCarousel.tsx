@@ -43,6 +43,11 @@ const products = [
     alt: 'Artículos para fiestas',
     label: 'Artículos para fiestas',
   },
+  {
+    src: '/products/bolos.png',
+    alt: 'Bolos para fiestas',
+    label: 'Bolos para fiestas',
+  },
 ];
 
 export default function ProductCarousel() {
@@ -128,11 +133,10 @@ export default function ProductCarousel() {
             <button
               key={i}
               onClick={() => api?.scrollTo(i)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                i === current
-                  ? 'bg-violet-600 w-5'
-                  : 'bg-violet-200 hover:bg-violet-400'
-              }`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${i === current
+                ? 'bg-violet-600 w-5'
+                : 'bg-violet-200 hover:bg-violet-400'
+                }`}
               aria-label={`Ir a imagen ${i + 1}`}
             />
           ))}

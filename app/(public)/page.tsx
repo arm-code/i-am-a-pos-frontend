@@ -10,7 +10,7 @@ const PHONE_DISPLAY = '656 603 1549';
 const PHONE_RAW = '+526566031549';
 const WHATS_NUMBER = '526566031549';
 const ADDRESS = 'Ciudad Juárez, Chihuahua';
-const EMAIL = 'contacto@eventosmendoza.mx';
+const EMAIL = 'keiladiaz913@gmail.com';
 const BASE_URL = 'https://eventos-mendoza.arm-solutions.com.mx';
 
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
@@ -127,7 +127,7 @@ export default function HomePage() {
             <div className="flex justify-center mb-6">
               <div className="relative w-24 h-24 sm:w-28 sm:h-28">
                 <Image
-                  src="/images/mob-mendoza.png"
+                  src="/images/eventos-mendoza.png"
                   alt={`Logotipo de ${BUSINESS_NAME}`}
                   fill
                   className="object-contain"
